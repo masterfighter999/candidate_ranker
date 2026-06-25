@@ -1,0 +1,135 @@
+# Redrob Hackathon — Submission Metadata
+# Generated from the verified Phase 2 run (phase2_ranking_fixed.ipynb).
+# ⚠️ Fields marked TODO still need your real information before submitting.
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "TODO-pick-a-team-name"  # solo submission — any handle you like
+
+primary_contact:
+  name: "TODO-your-full-name"
+  email: "TODO-your-email@example.com"   # used for all organizer communication
+  phone: "TODO-+91-XXXXXXXXXX"           # used for top-50 / top-10 outreach
+
+team_members:
+  - name: "TODO-your-full-name"
+    email: "TODO-your-email@example.com"
+    role: "Solo participant"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "TODO-https://github.com/YOUR_USERNAME/YOUR_REPO"
+# REQUIRED, currently missing. Per submission_spec.md Section 10.3, the repo
+# must contain: README.md with the exact reproduce command, the full source
+# (this notebook, no hidden steps), candidate_schema.json / jd_spec_fixed.json
+# / company_founding_years.json (the pre-computed Phase 1 artifacts the
+# ranker depends on), a requirements.txt, and this submission_metadata.yaml
+# at the repo root. Colab alone does not satisfy this requirement — Stage 3
+# reproduces your full ranking step from the GitHub repo specifically, not
+# from the sandbox link.
+
+sandbox_link: "TODO-https://colab.research.google.com/drive/YOUR_NOTEBOOK_ID"
+# Your Colab notebook link, set to "Anyone with the link can view" (or run).
+# This satisfies Section 10.5 — Colab is an explicitly accepted platform.
+# Make sure sharing permissions are set before submitting; a private/
+# inaccessible link is treated the same as a missing one.
+
+reproduce_command: "jupyter nbconvert --to notebook --execute phase2_ranking_fixed.ipynb --output phase2_ranking_executed.ipynb"
+# Runs the full pipeline end-to-end: loads jd_spec_fixed.json, scores all
+# 100,000 candidates in candidates.jsonl, writes submission.csv, and runs
+# inline + honeypot validation. Verified to complete in ~62-76s on CPU
+# (well under the 5-minute budget) across two independent environments
+# (this sandbox and the participant's Colab session), producing a
+# byte-identical submission.csv both times.
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Google Colab (free tier)"   # TODO: update if you used a different machine for the verified run
+  cpu_cores: 2                            # TODO: confirm against your actual Colab runtime (Runtime > View resources)
+  ram_gb: 12                              # TODO: confirm against your actual Colab runtime
+  python_version: "TODO-check via `!python --version` in your Colab session"
+  os: "Ubuntu (Colab container)"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: true
+  pre_computation_time_minutes: 0
+# NOTE on pre_computation_required: jd_spec_fixed.json and
+# company_founding_years.json were produced offline (Phase 1, using an LLM
+# to extract a structured rule spec from job_description.md and to compile
+# a verified company-founding-year reference table) before this notebook
+# ever runs. The notebook itself only reads those pre-computed JSON files —
+# it does not call any LLM or network API during the ranking step. Document
+# this pre-computation step in your README per Section 10.3's instruction
+# that pre-computation may exceed 5 minutes as long as the ranking step
+# itself doesn't.
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Claude"
+  # add "GitHub Copilot", "ChatGPT", "Cursor", etc. here if you also used them
+
+ai_usage_summary: |
+  Claude was used in two phases. Phase 1: collaborative extraction of a
+  structured rule spec (jd_spec_fixed.json) from the prose job description,
+  including manual verification of the company-founding-year honeypot
+  reference table against the full 100K-candidate dataset. Phase 2: the
+  candidate scoring notebook was independently written and run by the
+  participant; Claude was then used to review the run for correctness
+  against real sample/full data, identify and explain specific bugs (e.g.
+  skills[]-only keyword matches receiving undiscounted full credit;
+  honeypot-detection over-firing from an unthresholded date check; a
+  disqualifier rule whose evidence-gathering was vulnerable to the same
+  keyword-stuffing pattern it was meant to catch), and implement the
+  corresponding fixes directly in the notebook. All bug diagnoses were
+  verified empirically against the real candidates.jsonl before being
+  applied, and the resulting fixed notebook was independently re-run by
+  the participant in their own Colab environment, producing a
+  byte-identical submission.csv to the verification run. No candidate data
+  was sent to any LLM API as part of the scoring pipeline itself — Claude's
+  involvement was code review and Phase 1 spec-authoring, not part of the
+  CPU-only, no-network ranking step.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Two-phase, rule-based ranker. Phase 1 (offline, one-time, uses an LLM):
+  the prose job description is converted into a structured spec —
+  required/bonus signal keyword sets with weights, hard/soft disqualifier
+  definitions, experience-band and location/logistics scoring rules, and a
+  verified company-founding-year table for honeypot detection. Phase 2
+  (online, CPU-only, no network): pure-Python rules apply that spec to all
+  100,000 candidates. Composite score combines seven weighted dimensions
+  (required signals, experience fit, bonus signals, location/logistics,
+  availability/freshness, hireability, verification), gated by a
+  career-relevance multiplier that discounts candidates whose career
+  history is mostly outside the ML/AI track, and by hard disqualifiers
+  (honeypot patterns, pure-research-no-production, no-recent-coding) that
+  exclude candidates entirely. Keyword matching distinguishes three tiers
+  of evidence: career-history narration (full weight), skills[]-only
+  mentions discounted by proficiency/duration (partial weight, since this
+  field is the primary locus of keyword-stuffing in the dataset), and
+  summary/headline-only mentions (lower weight still). Honeypot detection
+  uses two patterns: expert-proficiency skills with near-zero duration
+  (≥3 simultaneous instances), and career start dates predating a known
+  company's founding by ≥4 years — this threshold was tuned empirically
+  against the full dataset's gap-size distribution, not assumed, after an
+  unthresholded version over-flagged by >3x relative to the dataset's
+  actual honeypot rate. Runtime: ~62-76 seconds for the full 100K pool on
+  a 2-core CPU Colab instance, well under the 5-minute budget.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true        # verified explicitly: 0% honeypot rate in top 100, confirmed by independent re-scan of the submitted CSV
+  reproduction_tested: true        # verified: ran end-to-end twice (sandbox + participant's own Colab), byte-identical submission.csv both times

@@ -1,0 +1,660 @@
+{
+  "role_summary": "Senior AI Engineer for a Series A AI-native talent intelligence platform, responsible for owning the intelligence layer including ranking, retrieval, and matching systems. The role requires a hybrid of deep technical depth in modern ML systems (embeddings, LLMs, fine-tuning) and a scrappy product-engineering attitude to ship working solutions quickly while establishing evaluation infrastructure.",
+  "experience_band": {
+    "min_years": 5,
+    "max_years": 9,
+    "is_strict": false,
+    "ideal_min_years": 6,
+    "ideal_max_years": 8
+  },
+  "hard_disqualifiers": [
+    {
+      "id": "pure_research_no_production",
+      "description": "Career spent entirely in pure research environments (academic labs, research-only roles) without any production deployment.",
+      "evidence_fields": [
+        "career_history[].title",
+        "career_history[].description"
+      ],
+      "severity": "hard",
+      "exception": null
+    },
+    {
+      "id": "recent_langchain_only",
+      "description": "AI experience consists primarily of recent (under 12 months) projects using LangChain to call OpenAI without substantial pre-LLM-era ML production experience.",
+      "evidence_fields": [
+        "skills[].name",
+        "career_history[].description"
+      ],
+      "severity": "hard",
+      "exception": "Demonstrable substantial pre-LLM-era ML production experience"
+    },
+    {
+      "id": "no_recent_coding",
+      "description": "Senior engineer who hasn't written production code in the last 18 months due to moving into architecture or tech lead roles.",
+      "evidence_fields": [
+        "career_history[].description",
+        "redrob_signals.github_activity_score"
+      ],
+      "severity": "hard",
+      "exception": null
+    }
+  ],
+  "soft_disqualifiers": [
+    {
+      "id": "title_chaser",
+      "description": "Career trajectory shows optimizing for titles by switching companies every 1.5 years, indicating lack of long-term commitment.",
+      "evidence_fields": [
+        "career_history[].title",
+        "career_history[].start_date",
+        "career_history[].end_date",
+        "career_history[].duration_months",
+        "career_history[].company"
+      ],
+      "penalty_weight": 0.8,
+      "exception": "Clear signal of intent to stay 3+ years"
+    },
+    {
+      "id": "framework_enthusiast",
+      "description": "Profile dominated by LangChain tutorials or demo blogs without evidence of deep systems thinking. (must be inferred from career_history[].description free text; no dedicated field exists)",
+      "evidence_fields": [
+        "redrob_signals.github_activity_score",
+        "career_history[].description",
+        "skills[].name"
+      ],
+      "penalty_weight": 0.3,
+      "exception": "Evidence of systems-level architecture work",
+      "evidence_confidence": "low_text_inferred",
+      "evidence_reliability_note": "Evidence for this rule relies on free-text keyword/pattern matching over career_history[].description (no dedicated structured field exists for publications, talks, blog posts, or OSS contributions in this dataset). penalty_weight has been reduced accordingly to limit the influence of false positives/negatives from text matching."
+    },
+    {
+      "id": "pure_consulting_background",
+      "description": "Entire career spent at consulting firms (TCS, Infosys, Wipro, Accenture, Cognizant, Capgemini) without prior product-company experience.",
+      "evidence_fields": [
+        "career_history[].industry"
+      ],
+      "penalty_weight": 0.9,
+      "exception": "Has prior product-company experience"
+    },
+    {
+      "id": "wrong_domain_expertise",
+      "description": "Primary expertise is computer vision, speech, or robotics without significant NLP/IR exposure. (must be inferred from career_history[].description free text; no dedicated field exists)",
+      "evidence_fields": [
+        "skills[].name",
+        "career_history[].description"
+      ],
+      "penalty_weight": 0.35,
+      "exception": "Significant NLP/IR exposure demonstrated",
+      "evidence_confidence": "low_text_inferred",
+      "evidence_reliability_note": "Evidence for this rule relies on free-text keyword/pattern matching over career_history[].description (no dedicated structured field exists for publications, talks, blog posts, or OSS contributions in this dataset). penalty_weight has been reduced accordingly to limit the influence of false positives/negatives from text matching."
+    },
+    {
+      "id": "closed_source_only",
+      "description": "Work entirely on closed-source proprietary systems for 5+ years without external validation (papers, talks, open-source). (must be inferred from career_history[].description free text; no dedicated field exists)",
+      "evidence_fields": [
+        "career_history[].description"
+      ],
+      "penalty_weight": 0.25,
+      "exception": "Has external validation via papers, talks, or open-source",
+      "evidence_confidence": "low_text_inferred",
+      "evidence_reliability_note": "Evidence for this rule relies on free-text keyword/pattern matching over career_history[].description (no dedicated structured field exists for publications, talks, blog posts, or OSS contributions in this dataset). penalty_weight has been reduced accordingly to limit the influence of false positives/negatives from text matching."
+    }
+  ],
+  "required_signals": [
+    {
+      "id": "production_embeddings",
+      "description": "Production experience with embeddings-based retrieval systems (handling drift, index refresh, quality regression).",
+      "keyword_hints": [
+        "embeddings",
+        "sentence-transformers",
+        "BGE",
+        "E5",
+        "retrieval",
+        "drift",
+        "index refresh"
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "vector_db_hybrid_search",
+      "description": "Production experience with vector databases or hybrid search infrastructure.",
+      "keyword_hints": [
+        "Pinecone",
+        "Weaviate",
+        "Qdrant",
+        "Milvus",
+        "OpenSearch",
+        "Elasticsearch",
+        "FAISS",
+        "hybrid search",
+        "vector database"
+      ],
+      "weight": 1.0
+    },
+    {
+      "id": "strong_python",
+      "description": "Strong Python skills with focus on code quality.",
+      "keyword_hints": [
+        "Python",
+        "code quality",
+        "production code"
+      ],
+      "weight": 0.9
+    },
+    {
+      "id": "evaluation_frameworks",
+      "description": "Hands-on experience designing evaluation frameworks for ranking systems (NDCG, MRR, MAP, A/B testing).",
+      "keyword_hints": [
+        "NDCG",
+        "MRR",
+        "MAP",
+        "A/B testing",
+        "evaluation framework",
+        "ranking metrics",
+        "offline benchmarks"
+      ],
+      "weight": 1.0
+    }
+  ],
+  "bonus_signals": [
+    {
+      "id": "llm_fine_tuning",
+      "description": "LLM fine-tuning experience (LoRA, QLoRA, PEFT).",
+      "keyword_hints": [
+        "LoRA",
+        "QLoRA",
+        "PEFT",
+        "fine-tuning",
+        "LLM"
+      ],
+      "weight": 0.4
+    },
+    {
+      "id": "learning_to_rank",
+      "description": "Experience with learning-to-rank models (XGBoost-based or neural).",
+      "keyword_hints": [
+        "learning-to-rank",
+        "XGBoost",
+        "ranking models",
+        "neural ranking"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "hr_tech_marketplace",
+      "description": "Prior exposure to HR-tech, recruiting tech, or marketplace products.",
+      "keyword_hints": [
+        "HR-tech",
+        "recruiting",
+        "marketplace",
+        "talent intelligence",
+        "candidate matching"
+      ],
+      "weight": 0.3
+    },
+    {
+      "id": "distributed_systems",
+      "description": "Background in distributed systems or large-scale inference optimization.",
+      "keyword_hints": [
+        "distributed systems",
+        "inference optimization",
+        "scale",
+        "latency"
+      ],
+      "weight": 0.2
+    },
+    {
+      "id": "open_source",
+      "description": "Open-source contributions in the AI/ML space.",
+      "keyword_hints": [
+        "open-source",
+        "GitHub",
+        "contributions",
+        "AI",
+        "ML"
+      ],
+      "weight": 0.2
+    }
+  ],
+  "location_scoring": {
+    "preferred_locations": [
+      "Pune",
+      "Noida"
+    ],
+    "acceptable_locations": [
+      "Hyderabad",
+      "Mumbai",
+      "Delhi NCR",
+      "Tier-1 Indian cities"
+    ],
+    "international_policy": "Case-by-case basis; no work visa sponsorship provided.",
+    "weight": 0.15
+  },
+  "logistics_scoring": {
+    "notice_period_ideal_max_days": 30,
+    "notice_period_buyout_max_days": 30,
+    "notice_period_weight": 0.1,
+    "active_in_job_market_weight": 0.15,
+    "active_in_job_market_fields": [
+      "redrob_signals.open_to_work_flag",
+      "redrob_signals.last_active_date",
+      "redrob_signals.recruiter_response_rate",
+      "redrob_signals.applications_submitted_30d"
+    ]
+  },
+  "ideal_candidate_profile": {
+    "years_experience_range": [
+      6,
+      8
+    ],
+    "applied_ml_years_range": [
+      4,
+      5
+    ],
+    "company_type": "Product companies (not pure services/consulting)",
+    "must_have_shipped": "At least one end-to-end ranking, search, or recommendation system to real users at meaningful scale",
+    "expects_strong_opinions_on": [
+      "retrieval (hybrid vs dense)",
+      "evaluation (offline vs online)",
+      "LLM integration (fine-tune vs prompt)"
+    ]
+  },
+  "hackathon_specific_traps": {
+    "keyword_stuffing_trap": "Matching based solely on the presence of AI keywords (e.g., RAG, Pinecone) in the skills section without verifying actual production experience.",
+    "hidden_fit_trap": "Overlooking candidates who lack specific keywords but have a career history demonstrating they built recommendation systems at product companies.",
+    "staleness_trap": "Ranking candidates highly based on perfect paper profiles while ignoring behavioral signals like inactivity (e.g., no login for 6 months) or low recruiter response rates."
+  },
+  "scoring_dimension_weights": {
+    "required_signals": 0.35,
+    "experience_fit": 0.25,
+    "bonus_signals": 0.09,
+    "location_logistics": 0.1,
+    "availability_freshness": 0.1,
+    "hireability_signals": 0.08,
+    "verification_signals": 0.03
+  },
+  "hireability_scoring": {
+    "description": "Distinct from active_in_job_market: measures whether a candidate who reaches the interview/offer stage actually follows through. A candidate can be actively job-searching but unreliable at later stages, or vice versa.",
+    "interview_completion_rate_field": "redrob_signals.interview_completion_rate",
+    "offer_acceptance_rate_field": "redrob_signals.offer_acceptance_rate",
+    "offer_acceptance_rate_no_data_sentinel": -1,
+    "offer_acceptance_rate_no_data_handling": "-1 means no prior offer history and must be treated as neutral/no-signal, NOT as a penalty. Do not score -1 as if it were a 0% acceptance rate.",
+    "weight": 0.08
+  },
+  "verification_signals": {
+    "description": "Weak positive signal that a candidate is a real, reachable, currently-active job seeker.",
+    "fields": [
+      "redrob_signals.verified_email",
+      "redrob_signals.verified_phone",
+      "redrob_signals.linkedin_connected"
+    ],
+    "weight": 0.03
+  },
+  "honeypot_detection": {
+    "description": "Per submission_spec.md Section 7: ~80 honeypot candidates exist with subtly impossible profiles, forced to relevance tier 0 in the ground truth. Submissions with honeypot rate > 10% in top 100 are disqualified at Stage 3, regardless of composite score. These two named patterns are checkable with pure rule-based logic (no LLM, CPU-only) against the candidate schema.",
+    "patterns": [
+      {
+        "id": "skill_proficiency_duration_mismatch",
+        "description": "\"Expert\" proficiency in a skill with ~0 months of stated duration using that skill (named example: 'expert proficiency in 10 skills with 0 years used').",
+        "evidence_fields": [
+          "skills[].proficiency",
+          "skills[].duration_months"
+        ],
+        "fully_checkable": true,
+        "suggested_rule": "Flag if proficiency == 'expert' AND duration_months < 12. Stronger signal if this holds for many skills simultaneously (the JD's example uses 10 skills) rather than just one or two."
+      },
+      {
+        "id": "experience_predates_company_founding",
+        "description": "Years of experience at a company exceeds how long that company has existed (named example: '8 years of experience at a company founded 3 years ago').",
+        "evidence_fields": [
+          "career_history[].company",
+          "career_history[].duration_months",
+          "career_history[].start_date"
+        ],
+        "fully_checkable": true,
+        "limitation": "Founding years were sourced via web search during this session and may contain minor inaccuracies for less-documented companies (confidence noted per company). Coverage is for the 55 real companies observed in this dataset only -- if candidates.jsonl is regenerated with new company names, this table will need to be extended. Given the closed-vocabulary nature of company names in this dataset (only 63 total, confirmed by full-dataset scan), this is expected to be stable.",
+        "company_founding_years": {
+          "Wipro": {
+            "year": 1945,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "TCS": {
+            "year": 1968,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "Infosys": {
+            "year": 1981,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "HCL": {
+            "year": 1976,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "Accenture": {
+            "year": 1989,
+            "confidence": "high",
+            "source": "public record (as Accenture; predecessor Andersen Consulting older)"
+          },
+          "Cognizant": {
+            "year": 1994,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "Capgemini": {
+            "year": 1967,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "Tech Mahindra": {
+            "year": 1986,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "Mindtree": {
+            "year": 1999,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "Mphasis": {
+            "year": 1992,
+            "confidence": "high",
+            "source": "public record, well established"
+          },
+          "Genpact AI": {
+            "year": 1997,
+            "confidence": "high",
+            "source": "Genpact, founded as GE Capital International Services (GECIS); 'AI' label in dataset refers to the same parent company, not a separate young entity",
+            "note": "candidate_data_label_is_parent_company"
+          },
+          "Swiggy": {
+            "year": 2014,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Razorpay": {
+            "year": 2014,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "CRED": {
+            "year": 2018,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Zomato": {
+            "year": 2008,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Flipkart": {
+            "year": 2007,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Meesho": {
+            "year": 2015,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Nykaa": {
+            "year": 2012,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "InMobi": {
+            "year": 2007,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "BYJU'S": {
+            "year": 2011,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "PolicyBazaar": {
+            "year": 2008,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Ola": {
+            "year": 2010,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Zoho": {
+            "year": 1996,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Vedantu": {
+            "year": 2014,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Paytm": {
+            "year": 2010,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Unacademy": {
+            "year": 2015,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "PharmEasy": {
+            "year": 2015,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "upGrad": {
+            "year": 2015,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Freshworks": {
+            "year": 2010,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "PhonePe": {
+            "year": 2015,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Dream11": {
+            "year": 2008,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Niramai": {
+            "year": 2016,
+            "confidence": "high",
+            "source": "World Economic Forum profile"
+          },
+          "Saarthi.ai": {
+            "year": 2021,
+            "confidence": "high",
+            "source": "IndiaAI government startup directory"
+          },
+          "Sarvam AI": {
+            "year": 2023,
+            "confidence": "high",
+            "source": "Wikipedia, multiple corroborating sources"
+          },
+          "Mad Street Den": {
+            "year": 2013,
+            "confidence": "medium",
+            "source": "Inc42/Peak XV (2013 founding, 2016 US incorporation per CB Insights -- using earlier date conservatively)"
+          },
+          "Observe.AI": {
+            "year": 2017,
+            "confidence": "high",
+            "source": "PitchBook, Tracxn, Golden -- consistent across sources"
+          },
+          "Krutrim": {
+            "year": 2023,
+            "confidence": "high",
+            "source": "Inc42, BusinessToday -- founded 2023, launched/unicorn status 2024"
+          },
+          "Wysa": {
+            "year": 2017,
+            "confidence": "medium",
+            "source": "LinkedIn/MHA Screening say launched 2017; TechCrunch notes idea originated 2016 -- using launch year"
+          },
+          "Haptik": {
+            "year": 2013,
+            "confidence": "high",
+            "source": "Wikipedia"
+          },
+          "Verloop.io": {
+            "year": 2015,
+            "confidence": "medium",
+            "source": "sources conflict 2015 vs 2016; using earlier/conservative date"
+          },
+          "Yellow.ai": {
+            "year": 2016,
+            "confidence": "high",
+            "source": "multiple corroborating sources (formerly Yellow Messenger)"
+          },
+          "Locobuzz": {
+            "year": 2015,
+            "confidence": "high",
+            "source": "Tracxn, Highperformr"
+          },
+          "Rephrase.ai": {
+            "year": 2019,
+            "confidence": "high",
+            "source": "CB Insights"
+          },
+          "Aganitha": {
+            "year": 2017,
+            "confidence": "high",
+            "source": "Tracxn, EasyLeadz -- consistent"
+          },
+          "Glance": {
+            "year": 2019,
+            "confidence": "high",
+            "source": "Wikipedia, Crunchbase, LinkedIn -- formal founding; idea conceived 2015 per StartupTalky but not used as founding date"
+          },
+          "Google": {
+            "year": 1998,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Netflix": {
+            "year": 1997,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Amazon": {
+            "year": 1994,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Salesforce": {
+            "year": 1999,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Uber": {
+            "year": 2009,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Meta": {
+            "year": 2004,
+            "confidence": "high",
+            "source": "public record (as Facebook)"
+          },
+          "Adobe": {
+            "year": 1982,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Microsoft": {
+            "year": 1975,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "Apple": {
+            "year": 1976,
+            "confidence": "high",
+            "source": "public record"
+          },
+          "LinkedIn": {
+            "year": 2002,
+            "confidence": "high",
+            "source": "public record"
+          }
+        },
+        "fictional_placeholder_companies": [
+          "Pied Piper",
+          "Hooli",
+          "Wayne Enterprises",
+          "Acme Corp",
+          "Initech",
+          "Dunder Mifflin",
+          "Globex Inc",
+          "Stark Industries"
+        ],
+        "fictional_placeholder_handling": "8 of the 63 companies appearing in career_history are fictional placeholder names (Pied Piper, Hooli, Wayne Enterprises, Acme Corp, Initech, Dunder Mifflin, Globex Inc, Stark Industries) and make up the large majority of career_history entries. These have no real founding date and this pattern cannot apply to them -- skip honeypot checking for these company names.",
+        "suggested_rule": "For each career_history entry where company is in company_founding_years: compute candidate_start_year = int(start_date[:4]). If candidate_start_year < company_founding_years[company]['year'], flag as a honeypot candidate (the candidate claims to have worked at the company before it existed). This is a strong, low-false-positive signal when it fires -- not a soft penalty, treat as equivalent in severity to the skill_proficiency_duration_mismatch pattern for honeypot-rate purposes."
+      }
+    ],
+    "disqualification_threshold": {
+      "max_honeypot_rate_in_top_100": 0.1,
+      "consequence": "Stage 3 disqualification regardless of composite score -- treat as a hard constraint on the final ranking, not just a scoring penalty."
+    }
+  },
+  "submission_format": {
+    "description": "Per submission_spec.md. This is an output-shape contract, not a JD-fit scoring rule -- Phase 2 must satisfy this exactly or the submission is auto-rejected before scoring.",
+    "output_file": {
+      "format": "CSV",
+      "encoding": "UTF-8",
+      "filename_pattern": "{team_participant_id}.csv",
+      "columns_in_order": [
+        "candidate_id",
+        "rank",
+        "score",
+        "reasoning"
+      ],
+      "row_count": "exactly 100 data rows + 1 header row"
+    },
+    "row_rules": [
+      "rank: integers 1-100, each appearing exactly once (rank 1 = best fit)",
+      "candidate_id: must exist in candidates.jsonl, each appearing exactly once",
+      "score: non-increasing as rank increases (score@rank1 >= score@rank2 >= ... >= score@rank100); ties allowed but ranks must still be unique",
+      "reasoning: optional but strongly recommended; 1-2 sentences; evaluated at Stage 4 on 10 sampled rows"
+    ],
+    "reasoning_quality_checks": {
+      "penalized": [
+        "empty reasoning",
+        "all-identical reasoning strings",
+        "templated reasoning that just inserts the candidate's name",
+        "reasoning that mentions skills/employers/experience not in the candidate's actual profile (hallucination)",
+        "reasoning that contradicts the rank (e.g. critical reasoning at rank 5, glowing reasoning at rank 95)"
+      ],
+      "rewarded": [
+        "references specific facts from the candidate's profile (years of experience, current title, named skills, signal values)",
+        "connects to specific JD requirements, not generic praise",
+        "acknowledges obvious gaps/concerns honestly where they exist"
+      ],
+      "implication_for_phase2": "Reasoning strings must be generated per-candidate from that candidate's actual field values (template-filled from real data is fine; an LLM call per candidate is NOT fine under compute constraints -- see compute_constraints below). A Python string-template approach pulling from career_history/skills/redrob_signals is the safe approach."
+    },
+    "compute_constraints": {
+      "max_runtime_seconds": 300,
+      "max_memory_gb": 16,
+      "compute": "CPU only, no GPU",
+      "network": "off -- no hosted LLM API calls (OpenAI, Anthropic, Cohere, Gemini, etc.) during the ranking step itself",
+      "max_disk_intermediate_state_gb": 5,
+      "implication": "This confirms the two-phase architecture: Phase 1 (this JD spec extraction, using a hosted LLM) runs ONCE, offline, before the ranking step and produces jd_spec.json. Phase 2 (scoring all 100K candidates) must be pure Python/rules applied to jd_spec.json + candidates.jsonl, with no network calls, completing within 5 minutes on a 16GB CPU-only machine. Pre-computed artifacts (this spec, any indexes) are fine to build ahead of time; only the final ranking step that produces the submission CSV is constrained."
+    },
+    "scoring_metrics": {
+      "formula": "0.50 * NDCG@10 + 0.30 * NDCG@50 + 0.15 * MAP + 0.05 * P@10",
+      "implication": "Heavy weight (80%) is on getting the TOP 10-50 right (NDCG@10 + NDCG@50), not just the full top-100 ordering. Phase 2 should optimize precision at the very top of the ranking, not just overall recall across all 100 slots."
+    }
+  }
+}

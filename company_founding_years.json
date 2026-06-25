@@ -1,0 +1,290 @@
+{
+  "company_founding_years": {
+    "Wipro": {
+      "year": 1945,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "TCS": {
+      "year": 1968,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "Infosys": {
+      "year": 1981,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "HCL": {
+      "year": 1976,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "Accenture": {
+      "year": 1989,
+      "confidence": "high",
+      "source": "public record (as Accenture; predecessor Andersen Consulting older)"
+    },
+    "Cognizant": {
+      "year": 1994,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "Capgemini": {
+      "year": 1967,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "Tech Mahindra": {
+      "year": 1986,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "Mindtree": {
+      "year": 1999,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "Mphasis": {
+      "year": 1992,
+      "confidence": "high",
+      "source": "public record, well established"
+    },
+    "Genpact AI": {
+      "year": 1997,
+      "confidence": "high",
+      "source": "Genpact, founded as GE Capital International Services (GECIS); 'AI' label in dataset refers to the same parent company, not a separate young entity",
+      "note": "candidate_data_label_is_parent_company"
+    },
+    "Swiggy": {
+      "year": 2014,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Razorpay": {
+      "year": 2014,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "CRED": {
+      "year": 2018,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Zomato": {
+      "year": 2008,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Flipkart": {
+      "year": 2007,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Meesho": {
+      "year": 2015,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Nykaa": {
+      "year": 2012,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "InMobi": {
+      "year": 2007,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "BYJU'S": {
+      "year": 2011,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "PolicyBazaar": {
+      "year": 2008,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Ola": {
+      "year": 2010,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Zoho": {
+      "year": 1996,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Vedantu": {
+      "year": 2014,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Paytm": {
+      "year": 2010,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Unacademy": {
+      "year": 2015,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "PharmEasy": {
+      "year": 2015,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "upGrad": {
+      "year": 2015,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Freshworks": {
+      "year": 2010,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "PhonePe": {
+      "year": 2015,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Dream11": {
+      "year": 2008,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Niramai": {
+      "year": 2016,
+      "confidence": "high",
+      "source": "World Economic Forum profile"
+    },
+    "Saarthi.ai": {
+      "year": 2021,
+      "confidence": "high",
+      "source": "IndiaAI government startup directory"
+    },
+    "Sarvam AI": {
+      "year": 2023,
+      "confidence": "high",
+      "source": "Wikipedia, multiple corroborating sources"
+    },
+    "Mad Street Den": {
+      "year": 2013,
+      "confidence": "medium",
+      "source": "Inc42/Peak XV (2013 founding, 2016 US incorporation per CB Insights -- using earlier date conservatively)"
+    },
+    "Observe.AI": {
+      "year": 2017,
+      "confidence": "high",
+      "source": "PitchBook, Tracxn, Golden -- consistent across sources"
+    },
+    "Krutrim": {
+      "year": 2023,
+      "confidence": "high",
+      "source": "Inc42, BusinessToday -- founded 2023, launched/unicorn status 2024"
+    },
+    "Wysa": {
+      "year": 2017,
+      "confidence": "medium",
+      "source": "LinkedIn/MHA Screening say launched 2017; TechCrunch notes idea originated 2016 -- using launch year"
+    },
+    "Haptik": {
+      "year": 2013,
+      "confidence": "high",
+      "source": "Wikipedia"
+    },
+    "Verloop.io": {
+      "year": 2015,
+      "confidence": "medium",
+      "source": "sources conflict 2015 vs 2016; using earlier/conservative date"
+    },
+    "Yellow.ai": {
+      "year": 2016,
+      "confidence": "high",
+      "source": "multiple corroborating sources (formerly Yellow Messenger)"
+    },
+    "Locobuzz": {
+      "year": 2015,
+      "confidence": "high",
+      "source": "Tracxn, Highperformr"
+    },
+    "Rephrase.ai": {
+      "year": 2019,
+      "confidence": "high",
+      "source": "CB Insights"
+    },
+    "Aganitha": {
+      "year": 2017,
+      "confidence": "high",
+      "source": "Tracxn, EasyLeadz -- consistent"
+    },
+    "Glance": {
+      "year": 2019,
+      "confidence": "high",
+      "source": "Wikipedia, Crunchbase, LinkedIn -- formal founding; idea conceived 2015 per StartupTalky but not used as founding date"
+    },
+    "Google": {
+      "year": 1998,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Netflix": {
+      "year": 1997,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Amazon": {
+      "year": 1994,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Salesforce": {
+      "year": 1999,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Uber": {
+      "year": 2009,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Meta": {
+      "year": 2004,
+      "confidence": "high",
+      "source": "public record (as Facebook)"
+    },
+    "Adobe": {
+      "year": 1982,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Microsoft": {
+      "year": 1975,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "Apple": {
+      "year": 1976,
+      "confidence": "high",
+      "source": "public record"
+    },
+    "LinkedIn": {
+      "year": 2002,
+      "confidence": "high",
+      "source": "public record"
+    }
+  },
+  "fictional_placeholder_companies": [
+    "Pied Piper",
+    "Hooli",
+    "Wayne Enterprises",
+    "Acme Corp",
+    "Initech",
+    "Dunder Mifflin",
+    "Globex Inc",
+    "Stark Industries"
+  ]
+}
